@@ -357,6 +357,193 @@ details[open] .faq-icon {
   transform: rotate(45deg);
 }
 
+/* ---------- Custom cursor (desktop only) ---------- */
+.cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 300;
+  display: none;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+html.has-cursor .cursor {
+  display: block;
+}
+html.has-cursor,
+html.has-cursor * {
+  cursor: none;
+}
+html.has-cursor input,
+html.has-cursor textarea {
+  cursor: text;
+}
+.cursor.is-hidden {
+  opacity: 0;
+}
+.cursor::before {
+  content: "";
+  position: absolute;
+  left: -6px;
+  top: -6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  transition: transform 0.4s var(--ease), background-color 0.3s, opacity 0.3s;
+}
+.cursor[data-state="link"]::before {
+  transform: scale(3.4);
+  background: color-mix(in oklab, var(--accent) 22%, transparent);
+  outline: 1px solid var(--accent);
+  outline-offset: -1px;
+}
+.cursor.is-down::before {
+  transform: scale(0.7);
+}
+.cursor span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  height: 84px;
+  width: 84px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.45s var(--ease);
+}
+.cursor[data-state="label"] span {
+  transform: translate(-50%, -50%) scale(1);
+}
+.cursor[data-state="label"]::before {
+  opacity: 0;
+}
+[data-magnetic] {
+  transition: transform 0.45s var(--ease);
+}
+
+/* ---------- Hero letters: the code glyph underneath (hover devices) ---------- */
+.morph-ch {
+  position: relative;
+  display: inline-block;
+}
+@media (hover: hover) and (pointer: fine) {
+  .morph-ch {
+    transition: color 0.25s 0.35s;
+  }
+  .morph-ch::after {
+    content: attr(data-ch);
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-geist-mono), monospace;
+    font-style: normal;
+    font-size: 0.62em;
+    color: var(--accent);
+    opacity: 0;
+    transform: translateY(35%) rotateX(80deg);
+    transition: opacity 0.25s 0.35s, transform 0.45s var(--ease) 0.35s;
+    pointer-events: none;
+  }
+  .morph-ch:hover {
+    color: transparent;
+    transition-delay: 0s;
+  }
+  .morph-ch:hover::after {
+    opacity: 1;
+    transform: none;
+    transition-delay: 0s;
+  }
+  .italic .morph-ch::after {
+    color: var(--fg);
+  }
+}
+
+/* ---------- Route change: a curtain with the page name lifts on a line ---------- */
+.route-curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  background: var(--fg);
+  color: var(--bg);
+  animation: curtain-up 1s var(--ease-io) both;
+}
+.route-curtain::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 2px;
+  background: var(--accent);
+  box-shadow: 0 0 22px 2px var(--accent);
+}
+.route-label {
+  font-size: clamp(3rem, 10vw, 8rem);
+  line-height: 1;
+  animation: curtain-label 1s var(--ease-io) both;
+}
+@keyframes curtain-up {
+  0%, 30% { transform: translateY(0); }
+  100% { transform: translateY(-101%); }
+}
+@keyframes curtain-label {
+  0% { opacity: 0; transform: translateY(30%); }
+  25% { opacity: 1; transform: none; }
+  45% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-40%); }
+}
+/* The entry intro already covers the first load. */
+html[data-intro] .route-curtain {
+  visibility: hidden;
+}
+.route-curtain + .page-enter {
+  animation-delay: 0.35s;
+}
+
+/* ---------- Scroll-driven effects (native, no JS) ---------- */
+.scroll-progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 60;
+  height: 2px;
+  background: var(--accent);
+  transform-origin: left;
+  transform: scaleX(0);
+}
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .scroll-progress {
+      animation: progress-grow linear both;
+      animation-timeline: scroll(root);
+    }
+    .parallax-img {
+      animation: parallax linear both;
+      animation-timeline: view();
+      animation-range: cover;
+    }
+  }
+}
+@keyframes progress-grow {
+  to { transform: scaleX(1); }
+}
+@keyframes parallax {
+  from { transform: translateY(-3.5%) scale(1.08); }
+  to { transform: translateY(3.5%) scale(1.08); }
+}
+
 /* ---------- Entry: code compiles into design ---------- */
 .intro {
   position: fixed;

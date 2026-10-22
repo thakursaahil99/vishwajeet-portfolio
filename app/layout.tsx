@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
+import Cursor from "@/components/Cursor";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Intro from "@/components/Intro";
@@ -42,6 +43,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         <Footer />
         <RevealObserver />
+        <Cursor />
+        <div className="scroll-progress" aria-hidden />
       </body>
     </html>
   );

@@ -17,8 +17,8 @@ export default function AboutPage() {
   return (
     <main>
       {/* ---------- Hero ---------- */}
-      <section className="mx-auto grid max-w-[1400px] gap-16 px-5 pb-24 pt-36 md:grid-cols-12 md:px-10 md:pt-44">
-        <div className="md:col-span-7">
+      <section className="mx-auto grid max-w-[1400px] gap-16 px-5 pb-24 pt-36 md:px-10 md:pt-44 lg:grid-cols-12">
+        <div className="lg:col-span-7">
           <p className="fade-up font-mono text-[11px] uppercase tracking-[0.18em] text-muted" style={delay(0.2)}>
             About · {profile.role}
           </p>
@@ -44,7 +44,7 @@ export default function AboutPage() {
         </div>
 
         {/* screenshot collage */}
-        <div className="relative h-[460px] md:col-span-5 md:h-auto">
+        <div className="relative mx-auto h-[420px] w-full max-w-[640px] sm:h-[560px] lg:col-span-5 lg:h-auto">
           {collage.map((p, i) => (
             <div
               key={p.slug}
@@ -65,12 +65,12 @@ export default function AboutPage() {
       {/* ---------- Story ---------- */}
       <section className="mx-auto max-w-[1400px] px-5 py-24 md:px-10 md:py-32">
         <SectionHead n="01" title="My story" />
-        <div className="mt-12 grid gap-12 md:grid-cols-12">
+        <div className="mt-12 grid gap-12 lg:grid-cols-12">
           <Lines
             lines={["Websites are where", "design and code", <span key="m" className="italic text-accent">finally meet.</span>]}
-            className="font-display text-[clamp(2.6rem,5.5vw,5rem)] leading-[0.95] md:col-span-7"
+            className="font-display text-[clamp(2.6rem,5.5vw,5rem)] leading-[0.95] lg:col-span-7"
           />
-          <div className="space-y-6 text-lg leading-relaxed text-muted md:col-span-5">
+          <div className="max-w-2xl space-y-6 text-lg leading-relaxed text-muted lg:col-span-5">
             <p data-reveal>
               I started out designing pages and quickly realised I wanted control over how they were built too. Today I take a website from the
               first layout all the way to launch.
@@ -97,13 +97,13 @@ export default function AboutPage() {
       <section className="mx-auto max-w-[1400px] px-5 py-24 md:px-10 md:py-32">
         <SectionHead n="02" title="Experience" aside="Where I work" />
         {experience.map((job) => (
-          <article key={job.company} className="mt-12 grid gap-10 md:grid-cols-12">
-            <div data-reveal className="md:col-span-4">
+          <article key={job.company} className="mt-12 grid gap-10 lg:grid-cols-12">
+            <div data-reveal className="lg:col-span-4">
               <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-accent">{job.period}</p>
               <h2 className="mt-4 font-display text-5xl leading-none md:text-6xl">{job.role}</h2>
               <p className="mt-4 text-lg text-muted">{job.company}</p>
             </div>
-            <div className="md:col-span-8">
+            <div className="lg:col-span-8">
               <ul>
                 {job.points.map((pt, k) => (
                   <li key={pt} data-reveal style={delay(k * 0.06)} className="flex gap-6 border-t border-line py-5 text-lg md:text-xl">

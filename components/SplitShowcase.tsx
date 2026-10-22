@@ -26,6 +26,7 @@ export default function SplitShowcase() {
     <div
       ref={ref}
       data-reveal="fade"
+      data-cursor="Move"
       className="split h-[78svh] min-h-[560px] rounded-[28px] border border-line md:h-[86svh]"
       onPointerMove={(e) => {
         if (e.pointerType === "mouse" || e.buttons) move(e.clientX);

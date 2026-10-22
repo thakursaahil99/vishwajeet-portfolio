@@ -42,8 +42,8 @@ function CodeCard() {
 function ServiceRow({ s, i, offset }: { s: Service; i: number; offset: number }) {
   const ex = examples[s.title] ? getProject(examples[s.title]!) : undefined;
   return (
-    <article data-reveal className="grid gap-8 border-t border-line py-14 md:grid-cols-12 md:gap-10">
-      <div className="md:col-span-5">
+    <article data-reveal className="grid gap-8 border-t border-line py-14 lg:grid-cols-12 lg:gap-10">
+      <div className="lg:col-span-5">
         <span className="font-mono text-xs text-accent">{String(offset + i + 1).padStart(2, "0")}</span>
         <h3 className="mt-4 font-display text-5xl leading-none md:text-6xl">{s.title}</h3>
         <p className="mt-5 text-lg text-muted">{s.desc}</p>
@@ -63,9 +63,9 @@ function ServiceRow({ s, i, offset }: { s: Service; i: number; offset: number })
           ))}
         </div>
       </div>
-      <div className="md:col-span-7">
+      <div className="lg:col-span-7">
         {ex ? (
-          <a href={`/work/${ex.slug}`} className="group block">
+          <a href={`/work/${ex.slug}`} data-cursor="View" className="group block">
             <div className="overflow-hidden rounded-xl border border-line">
               <Image
                 src={shot(ex, "desktop")}

@@ -48,15 +48,21 @@ export default function WorkList({ items, startIndex = 0 }: { items: Project[]; 
           <li key={p.slug} data-reveal style={{ ["--d" as string]: `${(i % 6) * 0.05}s` }}>
             <Link
               href={`/work/${p.slug}`}
+              data-cursor="Open"
               onPointerEnter={() => setActive(i)}
-              className="work-row grid grid-cols-[2.5rem_1fr_auto] items-center gap-4 border-t border-line px-2 py-6 transition-colors duration-500 md:grid-cols-[4rem_1.5fr_1fr_1fr_3rem] md:px-4 md:py-8"
+              className="work-row grid grid-cols-[2.5rem_1fr_auto] items-center gap-4 border-t border-line px-2 py-6 transition-colors duration-500 md:px-4 md:py-8 lg:grid-cols-[4rem_1.5fr_1fr_1fr_3rem]"
             >
               <span className="font-mono text-xs text-muted">{String(startIndex + i + 1).padStart(2, "0")}</span>
-              <span className="font-display text-3xl leading-none transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:text-6xl [.work-row:hover_&]:translate-x-3 [.work-row:hover_&]:italic">
-                {p.name}
+              <span className="min-w-0">
+                <span className="block font-display text-[clamp(1.9rem,6.5vw,3.75rem)] leading-none transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] [.work-row:hover_&]:translate-x-3 [.work-row:hover_&]:italic">
+                  {p.name}
+                </span>
+                <span className="mt-2 block font-mono text-[10px] uppercase tracking-widest opacity-60 lg:hidden">
+                  {p.industry} · {p.stack.join(" · ")}
+                </span>
               </span>
-              <span className="hidden text-sm md:block">{p.industry}</span>
-              <span className="hidden font-mono text-[11px] uppercase tracking-widest md:block">{p.stack.join(" · ")}</span>
+              <span className="hidden text-sm lg:block">{p.industry}</span>
+              <span className="hidden font-mono text-[11px] uppercase tracking-widest lg:block">{p.stack.join(" · ")}</span>
               <span className="justify-self-end text-xl transition-transform duration-500 [.work-row:hover_&]:-rotate-45">→</span>
             </Link>
           </li>

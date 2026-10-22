@@ -37,6 +37,19 @@ export function Lines({
   );
 }
 
+/** Letters that reveal their "code" glyph underneath on hover (desktop). */
+export function MorphWord({ text }: { text: string }) {
+  return (
+    <>
+      {text.split("").map((c, i) => (
+        <span key={i} data-ch={c} className="morph-ch">
+          {c}
+        </span>
+      ))}
+    </>
+  );
+}
+
 export function Tag({ children }: { children: React.ReactNode }) {
   return (
     <span className="inline-flex rounded-full border border-current/20 px-3 py-1 font-mono text-[10px] uppercase tracking-widest">
@@ -55,11 +68,11 @@ export function ArrowLink({ href, children, external = false }: { href: string; 
     </>
   );
   return external ? (
-    <a href={href} target="_blank" rel="noopener noreferrer" className={cls}>
+    <a href={href} target="_blank" rel="noopener noreferrer" data-magnetic className={cls}>
       {inner}
     </a>
   ) : (
-    <Link href={href} className={cls}>
+    <Link href={href} data-magnetic className={cls}>
       {inner}
     </Link>
   );

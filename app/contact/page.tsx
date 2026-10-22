@@ -40,12 +40,12 @@ export default function ContactPage() {
         </h1>
       </section>
 
-      <section className="mx-auto grid max-w-[1400px] gap-16 px-5 pb-24 md:grid-cols-12 md:px-10 md:pb-32">
-        <div data-reveal className="md:col-span-7">
+      <section className="mx-auto grid max-w-[1400px] gap-16 px-5 pb-24 md:px-10 md:pb-32 lg:grid-cols-12">
+        <div data-reveal className="lg:col-span-7">
           <ContactForm />
         </div>
 
-        <aside className="space-y-10 md:col-span-4 md:col-start-9">
+        <aside className="grid content-start gap-8 sm:grid-cols-2 lg:col-span-4 lg:col-start-9 lg:grid-cols-1">
           {[
             { k: "Email", v: <a href={`mailto:${profile.email}`} className="u-link break-all">{profile.email}</a> },
             { k: "Phone", v: <a href={`tel:${profile.phoneHref}`} className="u-link">{profile.phone}</a> },
@@ -73,7 +73,8 @@ export default function ContactPage() {
               href={`/work/${p.slug}`}
               aria-hidden={i >= strip.length}
               tabIndex={i >= strip.length ? -1 : undefined}
-              className="block w-[320px] shrink-0 overflow-hidden rounded-xl border border-line md:w-[460px]"
+              data-cursor="View"
+              className="block w-[260px] shrink-0 sm:w-[320px] overflow-hidden rounded-xl border border-line md:w-[460px]"
             >
               <Image src={shot(p, "desktop")} alt={`${p.name} website`} width={1440} height={900} sizes="460px" className="h-auto w-full" />
             </a>

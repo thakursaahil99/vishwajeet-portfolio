@@ -98,7 +98,8 @@ export default function IdCard() {
       }
 
       // Keep the card inside the stage.
-      last.x = Math.min(W - 30, Math.max(30, last.x));
+      const margin = Math.min(CARD_W / 2 + 8, W / 2);
+      last.x = Math.min(W - margin, Math.max(margin, last.x));
       last.y = Math.max(segLen * 3, Math.min(H - 60, last.y));
 
       // Card pendulum driven by the pivot's acceleration.
@@ -256,6 +257,7 @@ export default function IdCard() {
         ref={cardRef}
         role="button"
         tabIndex={0}
+        data-cursor="Drag"
         aria-label="ID card — drag to swing, click to flip"
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") {

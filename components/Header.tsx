@@ -50,6 +50,7 @@ export default function Header() {
             <ThemeToggle />
             <Link
               href="/contact"
+              data-magnetic
               className="hidden rounded-full bg-fg px-5 py-2.5 text-sm text-bg transition-colors hover:bg-accent hover:text-white md:inline-flex"
             >
               Hire me

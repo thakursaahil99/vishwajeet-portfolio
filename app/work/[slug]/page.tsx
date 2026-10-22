@@ -52,7 +52,7 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
           {p.summary}
         </p>
 
-        <dl className="fade-up mt-12 grid grid-cols-2 gap-6 border-t border-line pt-8 md:grid-cols-4" style={delay(0.6)}>
+        <dl className="fade-up mt-12 grid grid-cols-2 gap-x-6 gap-y-8 border-t border-line pt-8 lg:grid-cols-4" style={delay(0.6)}>
           <div>
             <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">Industry</dt>
             <dd className="mt-2 text-lg">{p.industry}</dd>
@@ -81,7 +81,7 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
         <div data-reveal="curtain" className="rounded-[28px] p-4 md:p-10" style={{ background: `linear-gradient(135deg, ${p.colors[0]}, ${p.colors[1]})` }}>
           <BrowserFrame url={p.domain}>
             <div className="aspect-[16/10] overflow-hidden">
-              <Shot p={p} kind="desktop" priority sizes="(min-width: 1400px) 1300px, 100vw" className="h-full object-cover object-top" />
+              <Shot p={p} kind="desktop" priority sizes="(min-width: 1400px) 1300px, 100vw" className="parallax-img h-full object-cover object-top" />
             </div>
           </BrowserFrame>
         </div>
@@ -90,9 +90,9 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
       {/* ---------- Overview ---------- */}
       <section className="mx-auto max-w-[1400px] px-5 py-16 md:px-10 md:py-24">
         <SectionHead n="01" title="Overview" />
-        <div className="mt-12 grid gap-12 md:grid-cols-12">
-          <Lines lines={["The brief"]} className="font-display text-5xl italic md:col-span-4 md:text-6xl" />
-          <div className="md:col-span-8">
+        <div className="mt-12 grid gap-12 lg:grid-cols-12">
+          <Lines lines={["The brief"]} className="font-display text-5xl italic md:text-6xl lg:col-span-4" />
+          <div className="lg:col-span-8">
             <p data-reveal className="text-2xl leading-snug md:text-3xl">
               {p.overview}
             </p>
@@ -163,7 +163,7 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
 
       {/* ---------- Next project ---------- */}
       <section className="mx-auto max-w-[1400px] px-5 pb-24 md:px-10 md:pb-32">
-        <Link href={`/work/${next.slug}`} className="group block border-t border-line pt-10">
+        <Link href={`/work/${next.slug}`} data-cursor="Next" className="group block border-t border-line pt-10">
           <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">Next project</p>
           <div className="mt-6 grid items-center gap-10 md:grid-cols-2">
             <p className="font-display text-[clamp(3.5rem,9vw,8rem)] leading-[0.9] transition-colors group-hover:italic group-hover:text-accent">

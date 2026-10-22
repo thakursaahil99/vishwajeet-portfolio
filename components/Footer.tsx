@@ -16,11 +16,12 @@ export default function Footer() {
         />
 
         <div className="mt-14 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-          <a href={`mailto:${profile.email}`} className="u-link break-all font-display text-3xl md:text-5xl">
+          <a href={`mailto:${profile.email}`} data-magnetic className="u-link font-display text-[clamp(1.35rem,5.2vw,3rem)]">
             {profile.email}
           </a>
           <Link
             href="/contact"
+            data-magnetic
             className="group flex size-36 shrink-0 items-center justify-center rounded-full bg-accent text-center text-white transition-transform duration-500 hover:scale-105 md:size-44"
           >
             <span className="text-sm">
@@ -30,7 +31,7 @@ export default function Footer() {
           </Link>
         </div>
 
-        <div className="mt-20 grid gap-10 border-t border-bg/15 pt-10 text-sm sm:grid-cols-2 md:grid-cols-4">
+        <div className="mt-20 grid gap-10 border-t border-bg/15 pt-10 text-sm sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <p className="font-mono text-[11px] uppercase tracking-[0.18em] opacity-50">Pages</p>
             <ul className="mt-4 space-y-2">

@@ -26,13 +26,13 @@ export function Process({ n }: { n: string }) {
         lines={["From first idea", <span key="l" className="italic">to live website.</span>]}
         className="mt-10 max-w-4xl font-display text-[clamp(2.6rem,6vw,5.5rem)] leading-[0.95]"
       />
-      <ol className="mt-16 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <ol className="mt-16 flex flex-col gap-4 lg:grid lg:grid-cols-4">
         {process.map((step, i) => (
           <li
             key={step.title}
             data-reveal
-            style={delay(i * 0.08)}
-            className="group relative overflow-hidden rounded-[22px] border border-line bg-card p-7 transition-colors duration-500 hover:border-transparent"
+            style={{ ...delay(i * 0.08), ["--stack-top" as string]: `${96 + i * 22}px` }}
+            className="group sticky top-[var(--stack-top)] overflow-hidden rounded-[22px] border border-line bg-card p-7 shadow-[0_-20px_40px_-30px_rgb(0_0_0/0.4)] lg:relative lg:top-auto lg:shadow-none transition-colors duration-500 hover:border-transparent"
           >
             <span className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-accent transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100" />
             <span className="font-display text-7xl italic text-accent">0{i + 1}</span>
@@ -49,12 +49,12 @@ export function Faq({ n, items = faqs }: { n: string; items?: typeof faqs }) {
   return (
     <section className="mx-auto max-w-[1400px] px-5 py-24 md:px-10 md:py-32">
       <SectionHead n={n} title="FAQ" aside="Good questions" />
-      <div className="mt-12 grid gap-10 md:grid-cols-12">
+      <div className="mt-12 grid gap-10 lg:grid-cols-12">
         <Lines
           lines={["Questions,", <span key="a" className="italic text-accent">answered.</span>]}
-          className="font-display text-[clamp(2.6rem,5vw,4.5rem)] leading-[0.95] md:col-span-4"
+          className="font-display text-[clamp(2.6rem,5vw,4.5rem)] leading-[0.95] lg:col-span-4"
         />
-        <div className="md:col-span-8">
+        <div className="lg:col-span-8">
           {items.map((f, i) => (
             <details key={f.q} data-reveal style={delay(i * 0.05)} className="group border-t border-line py-6 last:border-b">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-xl md:text-2xl">
